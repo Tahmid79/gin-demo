@@ -1,6 +1,10 @@
 package main
 
-import "github.com/gin-gonic/gin"
+import (
+	"log"
+
+	"github.com/gin-gonic/gin"
+)
 
 func main() {
 	gin.SetMode(gin.ReleaseMode)
@@ -10,5 +14,8 @@ func main() {
 			"message": "pong",
 		})
 	})
-	r.Run("localhost:5000") // listen and serve on 0.0.0.0:8080 (for windows "localhost:8080")
+
+	if err := r.Run("localhost:5000"); err != nil {
+		log.Panicf(err.Error())
+	}
 }
